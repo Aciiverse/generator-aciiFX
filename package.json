@@ -1,0 +1,22 @@
+{
+  "name": "aciifx",
+  "version": "1.0.0",
+  "description": "Simple & Powerful Aciiverse NodeTS Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aciiverse/AciiFX.git"
+  },
+  "author": "Flowtastisch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aciiverse/AciiFX/issues"
+  },
+  "homepage": "https://github.com/Aciiverse/AciiFX#readme",
+  "dependencies": {
+    "typescript": "^5.5.3"
+  }
+}
