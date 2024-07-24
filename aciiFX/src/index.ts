@@ -1,7 +1,6 @@
 import express  = require('express');
 import cors     = require('cors');
 
-// Read environments
 /**
  * @Copyright (c) 2015, Scott Motte
  * All rights reserved.
@@ -27,7 +26,9 @@ import cors     = require('cors');
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-require('dotenv').config();
+
+// Read environments
+require('dotenv').config({ path: 'aciiFX/.env' });
 
 // Get env data
 const   port    = parseInt(process.env.FX_PORT!) || 443,

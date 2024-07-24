@@ -11,8 +11,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\dist\\index.js",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "program": "${workspaceFolder}\\aciiFX\\dist\\index.js",
+            "preLaunchTask": "tsc: build - aciiFX/tsconfig.json",
             "outFiles": [
                 "${workspaceFolder}//**/*.js"
             ]

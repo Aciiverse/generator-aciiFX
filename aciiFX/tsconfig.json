@@ -62,7 +62,7 @@
         "strict": true,
         "sourceMap": true,
         "rootDir": "src",
-        "outDir": "./dist",
+        "outDir": "dist",
         "types": ["node"]
     },
     "exclude": [

@@ -23,7 +23,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt = require("jsonwebtoken");
 
 export interface UserRequest extends Request {
-    userData: {}
+    userData?: {}
 };
 
 // Checks if the user is logged in

@@ -17,14 +17,18 @@
   },
   "homepage": "https://github.com/Aciiverse/AciiFX#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.10.3",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.6"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/uuid": "^10.0.0"
   }
 }

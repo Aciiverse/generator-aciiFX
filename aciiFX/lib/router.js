@@ -1,8 +1,7 @@
-import express  = require('express');
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
 const router = express.Router();
-
-
 /**
  * @method displays service status and time at the init route from the system
  * @param {string} "/" the route
@@ -13,18 +12,17 @@ const router = express.Router();
  * @date 02.03.2024
  */
 router.get('/', (req, res) => {
-    const   today   = new Date(),
-            options = {
-                day:    '2-digit' as "2-digit" | "numeric",
-                month:  '2-digit' as "2-digit" | "numeric",
-                year:   'numeric' as "2-digit" | "numeric",
-                hour:   '2-digit' as "2-digit" | "numeric",
-                minute: '2-digit' as "2-digit" | "numeric",
-                second: '2-digit' as "2-digit" | "numeric"
-            };
+    const today = new Date(), options = {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
     res.status(200).send({
         message: `Service alive! Time: ${today.toLocaleDateString('de-DE', options)}`
     });
 });
-
 module.exports = router;
+//# sourceMappingURL=router.js.map

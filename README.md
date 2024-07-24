@@ -9,12 +9,14 @@
 
 ## Credits
 
+- [bcryptjs](https://github.com/kelektiv/node.bcrypt.js)
 - [cors](https://github.com/expressjs/cors)
 - [dotenv](https://github.com/motdotla/dotenv)
 - [express](https://github.com/expressjs/express)
 - [javascript](https://www.javascript.com/)
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - [mysql2](https://github.com/sidorares/node-mysql2)
+- [uuid](https://github.com/uuidjs/uuid)
 - [typescript](https://github.com/Microsoft/TypeScript)
 
 ## Features
