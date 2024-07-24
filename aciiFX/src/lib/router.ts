@@ -76,7 +76,7 @@ router.post('/register', isLoggedIn, (req, res: express.Response, next) => {
             });
         }
         // username not in use
-        bcrypt.hash(req.body.password, 10, (err, passHash) => {
+        bcrypt.hash(req.body.password, 32, (err, passHash) => {
             if (err) {
                 // -> Error occured
                 console.error(err.message);
