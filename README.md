@@ -14,6 +14,7 @@
 - [express](https://github.com/expressjs/express)
 - [javascript](https://www.javascript.com/)
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
+- [mysql2](https://github.com/sidorares/node-mysql2)
 - [typescript](https://github.com/Microsoft/TypeScript)
 
 ## Features
