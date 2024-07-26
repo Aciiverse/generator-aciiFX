@@ -1,0 +1,16 @@
+ {
+    "compilerOptions": {
+        "module": "commonJS",
+        "target": "ES6",
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strict": true,
+        "sourceMap": true,
+        "rootDir": "",
+        "types": ["node"]
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <title>AciiFX Demo</title>
+    </head>
+    <body>
+        <div class="form">
+            <h2>Register</h2>
+            <label class="required">Email</label><br>
+            <input id="regEmail" type="email"><br>
+            <label class="required">Username</label><br>
+            <input id="regUsername" type="string"><br>
+            <label class="required">Password</label><br>
+            <input id="regPass" type="password"><br>
+            <label class="required">Password Repeat</label><br>
+            <input id="regPassRep" type="password"><br>
+            <button onclick="onRegister()">Register</button>
+        </div>
+        <div class="form">
+            <h2>Login</h2>
+            <label class="required">Username</label><br>
+            <input id="logInUsername"><br>
+            <label class="required">Password</label><br>
+            <input id="logInPass" type="password"><br>
+            <button onclick="onLogin()">Login</button>
+        </div>
+        <div class="form">
+            <h2>Logout</h2>
+            <button onclick="onLogout()">Logout</button>
+        </div>
+    </body>
+</html>

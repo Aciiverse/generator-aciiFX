@@ -3,10 +3,25 @@ import bcrypt = require('bcryptjs')
 import uuid     = require('uuid');
 import jwt = require("jsonwebtoken");
 import { connection as db } from './db/mysql.db';
-import { isLoggedIn } from './middleware/user.middleware';
+import { isLoggedIn, validateRegister } from './middleware/user.middleware';
 import { UserData, UserResponse } from './base';
 
 const router = express.Router();
+
+interface RegisterRequest extends express.Request<{}, any, any, Record<string, any>>{
+    body: {
+        username?:  string,
+        email?:     string
+        password?:  string,
+    }
+}
+
+interface LoginRequest extends express.Request<{}, any, any, Record<string, any>>{
+    body: {
+        username?:  string
+        password?:  string,
+    }
+}
 
 /**
  * @method displays service status and time at the init route from the system
@@ -66,7 +81,7 @@ router.get('/', (req, res) => {
  * @author DerEineFlow
  * @memberof AWESOME CREW
  */
-router.post('/register', isLoggedIn, (req, res: express.Response, next) => {
+router.post('/register', validateRegister, (req: RegisterRequest, res: express.Response, next: express.NextFunction) => {
     db.query('SELECT uuid FROM users WHERE LOWER(username) = LOWER(?)',
         [req.body.username],
         (err, result) => {   // Insert into ingredients
@@ -76,7 +91,7 @@ router.post('/register', isLoggedIn, (req, res: express.Response, next) => {
             });
         }
         // username not in use
-        bcrypt.hash(req.body.password, 32, (err, passHash) => {
+        bcrypt.hash(req.body.password!, 10, (err, passHash) => {
             if (err) {
                 // -> Error occured
                 console.error(err.message);
@@ -84,14 +99,14 @@ router.post('/register', isLoggedIn, (req, res: express.Response, next) => {
                     message: err.message,
                 });
             }
-            db.query('INSERT INTO users (uuid, username, password, registered) VALUES (?, ?, ?, now());',
-                [uuid.v4(), req.body.username, passHash],
+            db.query('INSERT INTO users (uuid, username, email, password, registered, verified) VALUES (?, ?, ?, ?, now(), false);',
+                [uuid.v4(), req.body.email, req.body.username, passHash],
                 (err, result) => {
                     if (err) {
                         // -> Error occured
                         console.error(err.message);
                         return res.status(400).send({
-                            message: err.message,
+                            message: 'Registration failed',
                         });
                     }
                     return res.status(201).send({
@@ -111,7 +126,17 @@ router.post('/register', isLoggedIn, (req, res: express.Response, next) => {
  * @author DerEineFlow
  * @memberof AWESOME CREW
  */
-router.post('/login', (req, res, next) => {
+router.post('/login', (req: LoginRequest, res, next) => {
+    const   username = req.body.username,
+            password = req.body.password;
+
+    if (!username || !password) {
+        // -> input data is NOT valid
+        return res.status(401).send({
+            message: 'The username or password is incorrect!',
+        });
+    }
+
     db.query('SELECT * FROM users WHERE username = ?;',
         [req.body.username],
         (err, result: UserResponse[]) => {
@@ -127,7 +152,8 @@ router.post('/login', (req, res, next) => {
                     message: 'The username or password is incorrect!',
                 });
             }
-            bcrypt.compare(req.body.password,
+
+            bcrypt.compare(password,
                 result[0]['password']!,
                 (bError, bSuccess) => {
                     if (bError) {
@@ -139,8 +165,9 @@ router.post('/login', (req, res, next) => {
                     }
                     if (bSuccess) {
                         // -> Password valid
-                        const   today   = new Date(),
-                                secrKey = process.env.FX_SECRET_KEY;
+                        const   today       = new Date(),
+                                tokenExp    = new Date().setDate(today.getDate() + 7),
+                                secrKey     = process.env.FX_SECRET_KEY;
 
                         db.query('UPDATE users SET lastLogin = ? WHERE uuid = ?;',
                             [today, result[0].uuid,]
@@ -164,6 +191,7 @@ router.post('/login', (req, res, next) => {
                         return res.status(200).send({
                             message: 'Logged in!',
                             token,
+                            tokenExp,
                             user: result[0],
                         });
                     }

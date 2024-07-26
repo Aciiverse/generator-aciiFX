@@ -23,9 +23,9 @@ import mysql = require('mysql2');
  * @method returns the mysql connection pool
  */
 export const connection = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT || '3306')
+    host: process.env.FX_DB_HOST,
+    user: process.env.FX_DB_USER,
+    database: process.env.FX_DB_NAME,
+    password: process.env.FX_DB_PASS,
+    port: parseInt(process.env.FX_DB_PORT || '3306')
 })

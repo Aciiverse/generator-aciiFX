@@ -19,8 +19,15 @@
 - [uuid](https://github.com/uuidjs/uuid)
 - [typescript](https://github.com/Microsoft/TypeScript)
 
+### Für die Demo App
+
+- html5
+- css3
+
 ## Features
 
+- Simples und leistungsstarkes API Grundgerüst
+- Usersystem inkl. Middleware
 - 
 
 ## Lokaler Setup (DEV)
