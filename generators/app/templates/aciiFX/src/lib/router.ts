@@ -5,6 +5,7 @@ import jwt = require("jsonwebtoken");
 import { connection as db } from './db/mysql.db';
 import { isLoggedIn, validateRegister } from './middleware/user.middleware';
 import { UserData, UserResponse } from './base';
+import { Language } from './lang';
 
 const router = express.Router();
 
@@ -42,38 +43,14 @@ router.get('/', (req, res) => {
                 minute: '2-digit' as "2-digit" | "numeric",
                 second: '2-digit' as "2-digit" | "numeric"
             };
+    const txt = Language.getText('testTedxt');
+    console.log(txt)
     res.status(200).send({
         message: `Service alive! Time: ${today.toLocaleDateString('de-DE', options)}`
     });
 });
 
 /**
- * @Copyright (MIT Licence) (c) 2010 Nicholas Campbell
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- * @Copyright (MIT Licence) (c) 2010-2020 Robert Kieffer and other contributors
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @method register route
  * @param {string} "/" the route
  * @param {Request<{}, any, any, QueryString.ParsedQs, Record<string, any>>} req requested fields
@@ -87,7 +64,7 @@ router.post('/register', validateRegister, (req: RegisterRequest, res: express.R
         (err, result) => {   // Insert into ingredients
         if (result && Array.isArray(result) && result.length) {
             return res.status(409).send({
-                message: 'This username is already in use!',
+                message: Language.getText('err.aciifx.usernameExists'),
             });
         }
         // username not in use
@@ -96,7 +73,7 @@ router.post('/register', validateRegister, (req: RegisterRequest, res: express.R
                 // -> Error occured
                 console.error(err.message);
                 return res.status(500).send({
-                    message: err.message,
+                    message: Language.getText("err.aciifx.registration"),
                 });
             }
             db.query('INSERT INTO users (uuid, username, email, password, registered, verified) VALUES (?, ?, ?, ?, now(), false);',
@@ -106,11 +83,11 @@ router.post('/register', validateRegister, (req: RegisterRequest, res: express.R
                         // -> Error occured
                         console.error(err.message);
                         return res.status(400).send({
-                            message: 'Registration failed',
+                            message: Language.getText("err.aciifx.registration"),
                         });
                     }
                     return res.status(201).send({
-                        message: 'Registered!',
+                        message: Language.getText('suc.aciifx.registration'),
                     });
                 }
             );
@@ -133,7 +110,7 @@ router.post('/login', (req: LoginRequest, res, next) => {
     if (!username || !password) {
         // -> input data is NOT valid
         return res.status(401).send({
-            message: 'The username or password is incorrect!',
+            message: Language.getText('err.aciifx.userOrPass'),
         });
     }
 
@@ -144,12 +121,12 @@ router.post('/login', (req: LoginRequest, res, next) => {
                 // -> Unexpected Error
                 console.error(err);
                 return res.status(401).send({
-                    message: 'The username or password is incorrect!',
+                    message: Language.getText('err.aciifx.userOrPass'),
                 });
             } else if (Array.isArray(result) && !result.length) {
                 // -> No data founded
                 return res.status(401).send({
-                    message: 'The username or password is incorrect!',
+                    message: Language.getText('err.aciifx.userOrPass'),
                 });
             }
 
@@ -160,7 +137,7 @@ router.post('/login', (req: LoginRequest, res, next) => {
                         // -> Unexpected error
                         console.error(bError);
                         return res.status(401).send({
-                            message: 'The username or password is incorrect!',
+                            message: Language.getText('err.aciifx.userOrPass'),
                         });
                     }
                     if (bSuccess) {
@@ -189,14 +166,14 @@ router.post('/login', (req: LoginRequest, res, next) => {
                         delete result[0].password;
 
                         return res.status(200).send({
-                            message: 'Logged in!',
+                            message: Language.getText('suc.aciifx.login'),
                             token,
                             tokenExp,
                             user: result[0],
                         });
                     }
                     return res.status(400).send({
-                        message: 'The username or password is incorrect!',
+                        message: Language.getText('err.aciifx.userOrPass'),
                     });
                 }
             )

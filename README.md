@@ -26,9 +26,9 @@
 
 ## Features
 
-- Simples und leistungsstarkes API Grundgerüst
+- simples und leistungsstarkes API Grundgerüst
 - Usersystem inkl. Middleware
-- 
+- simples & modulares Übersetzungsmodul
 
 ## Lokaler Setup (DEV)
 

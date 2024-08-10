@@ -60,13 +60,13 @@ async function onRegister () {
             passwordRepeat: passRepeat.value
         })
     })
+    const data: DefaultResult = await response.json();
 
     if (!response.ok) {
-        alert('Register fetch failed');
+        alert(data.message);
         return;
     }
 
-    const data: DefaultResult = await response.json();
     alert(data.message);
 }
 
@@ -91,13 +91,13 @@ async function onLogin() {
             password: password.value,
         })
     })
+    const data: LoginResult = await response.json();
 
     if (!response.ok) {
-        alert('Login fetch failed');
+        alert(data.message);
         return;
     }
 
-    const data: LoginResult = await response.json();
     window.localStorage.setItem('av-aciifx-userset', JSON.stringify(data.user));
     window.localStorage.setItem('av-aciifx-accessToken', JSON.stringify(data.token));
     window.localStorage.setItem('av-aciifx-tokenExp', JSON.stringify(data.tokenExp));
@@ -105,6 +105,7 @@ async function onLogin() {
 }
 
 function onLogout() {
+    window.localStorage.removeItem('av-aciifx-tokenExp')
     window.localStorage.removeItem('av-aciifx-userset');
     window.localStorage.removeItem('av-aciifx-accessToken');
     alert('Logout');
