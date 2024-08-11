@@ -1,6 +1,6 @@
 import mysql = require('mysql2');
 
-export const connection = mysql.createPool({
+export const db = mysql.createPool({
     host: process.env.FX_DB_HOST,
     user: process.env.FX_DB_USER,
     database: process.env.FX_DB_NAME,
