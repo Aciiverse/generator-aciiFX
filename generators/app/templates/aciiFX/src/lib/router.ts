@@ -27,13 +27,13 @@ interface LoginRequest extends express.Request<{}, any, any, Record<string, any>
 /**
  * @method displays service status and time at the init route from the system
  * @param {string} "/" the route
- * @param {Request<{}, any, any, QueryString.ParsedQs, Record<string, any>>} req requested fields
- * @param {Response<any, Record<string, any>, number>} res Result
+ * @param {express.Request} req requested fields
+ * @param {express.Response} res Result
  * @author Flowtastisch
  * @memberof Aciiverse
  * @date 02.03.2024
  */
-router.get('/', (req, res) => {
+router.get('/', (req: express.Request, res: express.Response) => {
     const   today   = new Date(),
             options = {
                 day:    '2-digit' as "2-digit" | "numeric",
@@ -43,8 +43,6 @@ router.get('/', (req, res) => {
                 minute: '2-digit' as "2-digit" | "numeric",
                 second: '2-digit' as "2-digit" | "numeric"
             };
-    const txt = Language.getText('testTedxt');
-    console.log(txt)
     res.status(200).send({
         message: `Service alive! Time: ${today.toLocaleDateString('de-DE', options)}`
     });
@@ -53,12 +51,13 @@ router.get('/', (req, res) => {
 /**
  * @method register route
  * @param {string} "/" the route
- * @param {Request<{}, any, any, QueryString.ParsedQs, Record<string, any>>} req requested fields
- * @param {Response<any, Record<string, any>, number>} res Result
- * @author DerEineFlow
- * @memberof AWESOME CREW
+ * @param {RegisterRequest} req requested fields
+ * @param {express.Response} res Result
+ * @author Flowtastisch
+ * @memberof Aciiverse
+ * @date 02.03.2024
  */
-router.post('/register', validateRegister, (req: RegisterRequest, res: express.Response, next: express.NextFunction) => {
+router.post('/register', validateRegister, (req: RegisterRequest, res: express.Response) => {
     db.query('SELECT uuid FROM users WHERE LOWER(username) = LOWER(?)',
         [req.body.username],
         (err, result) => {   // Insert into ingredients
@@ -98,12 +97,13 @@ router.post('/register', validateRegister, (req: RegisterRequest, res: express.R
 /**
  * @method login route
  * @param {string} "/" the route
- * @param {Request<{}, any, any, QueryString.ParsedQs, Record<string, any>>} req requested fields
- * @param {Response<any, Record<string, any>, number>} res Result
- * @author DerEineFlow
- * @memberof AWESOME CREW
+ * @param {LoginRequest} req requested fields
+ * @param {express.Response} res Result
+ * @author Flowtastisch
+ * @memberof Aciiverse
+ * @date 02.03.2024
  */
-router.post('/login', (req: LoginRequest, res, next) => {
+router.post('/login', (req: LoginRequest, res: express.Response) => {
     const   username = req.body.username,
             password = req.body.password;
 
