@@ -28,10 +28,20 @@ module.exports = class extends Generator {
       }
     );
 
-    // Copy Env file
+    // copy env file if env file not already exists
+    const destinationEnvPath = this.destinationPath('aciiFX/.env');
+
+    if (!this.fs.exists(destinationEnvPath)) {
+      this.fs.copy(
+        this.templatePath('aciiFX/.env-template'),
+        destinationEnvPath
+      );
+    }
+
+    // copy template env file 
     this.fs.copy(
       this.templatePath('aciiFX/.env-template'),
-      this.destinationPath('aciiFX/.env')
+      this.destinationPath('aciiFX/.env-template')
     );
   }
 
