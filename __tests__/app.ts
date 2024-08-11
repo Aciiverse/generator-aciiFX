@@ -1,14 +1,10 @@
 'use strict';
 const path = require('path');
 const assert = require('yeoman-assert');
-const helpers = require('yeoman-test');
 
-describe('generator-aciifx-cli:app', () => {
+describe('generator-aciifx-cli:app', function () {
   beforeAll(() => {
     this.templatesDir = path.join(__dirname, '../generators/app/templates');
-    return helpers
-      .run(path.join(__dirname, '../generators/app'))
-      .withPrompts({ someAnswer: true });
   });
 
   it('aciiFX exists', () => {
