@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt = require("jsonwebtoken");
 import { Language } from "../lang";
+import { GetUsersRegisterReq } from "../types/api.types";
 
 export interface UserRequest extends Request {
     userData?: {}
@@ -34,21 +35,22 @@ export const isLoggedIn = (req: UserRequest, res: Response, next: NextFunction) 
 },
 // Checks if the register uuid & password are valid
 validateRegister = (req: Request, res: Response, next: NextFunction) => {
+    const body: GetUsersRegisterReq = req.body;
     // username min length 3
-    if (!req.body.username || req.body.username.length < 3) {
+    if (!body.username || body.username.length < 3) {
         return res.status(400).send({
             message: Language.getText('err.aciifx.nameLength'),
         });
     }
     // password min 6 chars
-    if (!req.body.password || req.body.password.length < 6) {
+    if (!body.password || body.password.length < 6) {
         return res.status(400).send({
             message: Language.getText('err.aciifx.passwordLength'),
         });
     }
     // password (repeat) must match
-    if (!req.body.passwordRepeat ||
-        req.body.password !== req.body.passwordRepeat ) {
+    if (!body.passwordRepeat ||
+        body.password !== body.passwordRepeat ) {
 
         return res.status(400).send({
             message: Language.getText('err.aciifx.passwordsMatch'),

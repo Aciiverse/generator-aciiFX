@@ -2,26 +2,14 @@ import express  = require('express');
 import bcrypt = require('bcryptjs');
 import jwt = require("jsonwebtoken");
 import { Language } from '../lang';
-import { UserData, UserResponse } from '../base';
 import { db } from '../db/mysql.db';
 import uuid = require('uuid');
 import { validateRegister } from '../middleware/user.middleware';
+import { UsersResult, UsersTable } from '../types/db.types';
+import { UserData } from '../base';
+import { GetBaseRes, GetUsersLoginReq, GetUsersLoginRes, GetUsersRegisterReq } from '../types/api.types';
+import { ResultSetHeader } from 'mysql2';
 const router = express.Router();
-
-interface RegisterRequest extends express.Request<{}, any, any, Record<string, any>>{
-    body: {
-        username?:  string,
-        email?:     string
-        password?:  string,
-    }
-}
-
-interface LoginRequest extends express.Request<{}, any, any, Record<string, any>>{
-    body: {
-        username?:  string
-        password?:  string,
-    }
-}
 
 /**
  * @method login route
@@ -32,9 +20,10 @@ interface LoginRequest extends express.Request<{}, any, any, Record<string, any>
  * @memberof Aciiverse
  * @date 15.08.2024
  */
-router.post('/login', (req: LoginRequest, res: express.Response) => {
-    const   username = req.body.username,
-            password = req.body.password;
+router.post('/login', (req, res) => {
+    const   body: GetUsersLoginReq = req.body,
+            username = body.username,
+            password = body.password;
 
     if (!username || !password) {
         // -> input data is NOT valid
@@ -44,8 +33,8 @@ router.post('/login', (req: LoginRequest, res: express.Response) => {
     }
 
     db.query('SELECT * FROM users WHERE username = ?;',
-        [req.body.username],
-        (err, result: UserResponse[]) => {
+        [body.username],
+        (err, result: UsersResult) => {
             if (err) {
                 // -> Unexpected Error
                 console.error(err);
@@ -99,11 +88,11 @@ router.post('/login', (req: LoginRequest, res: express.Response) => {
                             token,
                             tokenExp,
                             user: result[0],
-                        });
+                        } as GetUsersLoginRes);
                     }
                     return res.status(400).send({
                         message: Language.getText('err.aciifx.userOrPass'),
-                    });
+                    } as GetBaseRes);
                 }
             )
         }
@@ -119,17 +108,19 @@ router.post('/login', (req: LoginRequest, res: express.Response) => {
  * @memberof Aciiverse
  * @date 15.08.2024
  */
-router.post('/register', validateRegister, (req: RegisterRequest, res: express.Response) => {
+router.post('/register', validateRegister, (req, res) => {
+    const body: GetUsersRegisterReq = req.body;
+
     db.query('SELECT uuid FROM users WHERE LOWER(username) = LOWER(?)',
-        [req.body.username],
-        (err, result) => {   // Insert into ingredients
+        [body.username],
+        (err, result: { uuid: UsersTable["uuid"] }[] & ResultSetHeader) => {   // Insert into ingredients
         if (result && Array.isArray(result) && result.length) {
             return res.status(409).send({
                 message: Language.getText('err.aciifx.usernameExists'),
-            });
+            } as GetBaseRes);
         }
         // username not in use
-        bcrypt.hash(req.body.password!, 10, (err, passHash) => {
+        bcrypt.hash(body.password!, 10, (err, passHash) => {
             if (err) {
                 // -> Error occured
                 console.error(err.message);
@@ -138,18 +129,18 @@ router.post('/register', validateRegister, (req: RegisterRequest, res: express.R
                 });
             }
             db.query('INSERT INTO users (uuid, username, email, password, registered, verified) VALUES (?, ?, ?, ?, now(), false);',
-                [uuid.v4(), req.body.email, req.body.username, passHash],
-                (err, result) => {
+                [uuid.v4(), body.email, body.username, passHash],
+                (err, result: ResultSetHeader) => {
                     if (err) {
                         // -> Error occured
                         console.error(err.message);
                         return res.status(400).send({
                             message: Language.getText("err.aciifx.registration"),
-                        });
+                        } as GetBaseRes);
                     }
                     return res.status(201).send({
                         message: Language.getText('suc.aciifx.registration'),
-                    });
+                    } as GetBaseRes);
                 }
             );
         });

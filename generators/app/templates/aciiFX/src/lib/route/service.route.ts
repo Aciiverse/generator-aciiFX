@@ -1,4 +1,5 @@
 import express = require('express');
+import { GetBaseRes } from '../types/api.types';
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.get('/', (req: express.Request, res: express.Response) => {
             };
     res.status(200).send({
         message: `Service alive! Time: ${today.toLocaleDateString('de-DE', options)}`
-    });
+    } as GetBaseRes);
 });
 
 module.exports = router;
