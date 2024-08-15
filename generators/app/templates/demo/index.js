@@ -30,7 +30,7 @@ function onRegister() {
             alert("Required fields are'nt valid");
             return;
         }
-        const response = yield fetch(`${baseURL}/register`, {
+        const response = yield fetch(`${baseURL}/users/register`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function onLogin() {
             alert("Required fields are'nt valid");
             return;
         }
-        const response = yield fetch(`${baseURL}/login`, {
+        const response = yield fetch(`${baseURL}/users/login`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -81,8 +81,12 @@ function onLogin() {
     });
 }
 function onLogout() {
+    window.localStorage.removeItem('av-aciifx-tokenExp');
     window.localStorage.removeItem('av-aciifx-userset');
     window.localStorage.removeItem('av-aciifx-accessToken');
     alert('Logout');
+}
+function onNavToServiceStatus() {
+    window.open(baseURL, '_blank');
 }
 //# sourceMappingURL=index.js.map

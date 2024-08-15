@@ -1,4 +1,4 @@
-# AciiFX
+# AciiFX-CLI
 
 > Simple & Powerful Aciiverse NodeTS Backend
 > [Here](https://) is the doc also in english.
@@ -9,7 +9,10 @@
 
 ## Credits
 
+### AciiFX
+
 - [bcryptjs](https://github.com/kelektiv/node.bcrypt.js)
+- [concurrently](https://github.com/open-cli-tools/concurrently)
 - [cors](https://github.com/expressjs/cors)
 - [dotenv](https://github.com/motdotla/dotenv)
 - [express](https://github.com/expressjs/express)
@@ -19,7 +22,13 @@
 - [uuid](https://github.com/uuidjs/uuid)
 - [typescript](https://github.com/Microsoft/TypeScript)
 
-### Für die Demo App
+### Zusätzlich für den Generator
+
+- [coveralls](https://github.com/nickmerwin/node-coveralls)
+- [jest](https://jestjs.io/)
+- [yeoman](https://yeoman.io/)
+
+### Zusätzlich für die Demo App
 
 - html5
 - css3
@@ -30,27 +39,43 @@
 - Usersystem inkl. Middleware
 - simples & modulares Übersetzungsmodul
 
-## Lokaler Setup (DEV)
+## Eigenes Projekt generieren
 
-### Was du brauchst (Lokaler Setup)
+### Was du brauchst
 
 - NodeJS (>= vXX)
-- TypeScript Modul
+- TypeScript `npm install -g typescript`
 - Erreichbare MySQL Datenbank
 
-### Schritt für Schritt (Lokaler Setup)
+### Schritt für Schritt
 
-1. So setzt du das alles auf
-2. Dann das hier
+1. Installiere Yeoman
 
-## Server Setup
+        npm install -g yo
 
-### Was du brauchst (Server Setup)
+2. Installiere den AciiFX-CLI generator
 
-- Erreichbare MySQL Datenbank
-- Server (Wir nutzen die Debian 12 Architektur)
+        npm i -g @aciiverse/generator-aciifx-cli
 
-### Schritt für Schritt (Server Setup)
+3. Führe den Generator in deinem Wunschordner aus (!Achtung Der Generator generiert einen eigenen Ordner in deinem Ordner!)
 
-1. So setzt du das alles auf
-2. Dann das hier
+        yo @aciiverse/aciifx-cli
+
+4. Führe jetzt den Befehlt `npm run start:dev` aus oder alternativ kannst du in die `package.json` gehen und findest bei den `scripts` den Befehl `start:dev`
+
+### Entwickeln mit aciiFX
+
+> Entwickeln tust du im ```./aciiFX/src/``` Ordner
+
+#### Neue Route (Module)
+
+Um eine neue Route zu erstellen, erstellst du eine neue Typescript-Datei. Lege die neue Datei folgendermaßen ab: ```./aciiFX/src/lib/route/{Deine Route}.route.ts``` ab. {Deine Route} ersetzt du mit der gewünschten Route. Hier sind ein paar Beispiele *(Die ```/service``` Route ist eine Ausnahme)*:
+
+| Modul | Route | Datei | Usecase |
+| -- | -- | -- | -- |
+| User | /users/login | users.route.ts | Login des Users |
+| User | /users/register | users.route.ts | Registrieren des Users |
+| Spiele | /games | games.route.ts | Anzeige aller Spiele |
+| Spiele | /games/:id | games.route.ts | Anzeige eines Spieles |
+| Spiele | /games/:id/scoreboard | games.route.ts | Anzeige der Punkte eines Spieles |
+| Spiele | /games/:id/players | games.route.ts | Anzeige der Spieler eines Spieles |

@@ -48,7 +48,7 @@ async function onRegister () {
         return;
     }
 
-    const response = await fetch(`${baseURL}/register`, {
+    const response = await fetch(`${baseURL}/users/register`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ async function onLogin() {
         return;
     }
 
-    const response = await fetch(`${baseURL}/login`, {
+    const response = await fetch(`${baseURL}/users/login`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -109,4 +109,8 @@ function onLogout() {
     window.localStorage.removeItem('av-aciifx-userset');
     window.localStorage.removeItem('av-aciifx-accessToken');
     alert('Logout');
+}
+
+function onNavToServiceStatus() {
+    window.open(baseURL, '_blank');
 }
