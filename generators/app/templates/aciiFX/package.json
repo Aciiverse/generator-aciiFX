@@ -9,6 +9,7 @@
     "start": "node dist/index.js",
     "build": "tsc",
     "build:watch": "tsc --watch",
+    "export:types": "tsc -d --outDir ../apiTypes --emitDeclarationOnly true ./src/lib/types/api.types.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "sleep": "node -e \"setTimeout(() => process.exit(0), 2000)\""
   },

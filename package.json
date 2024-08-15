@@ -1,6 +1,6 @@
 {
   "name": "@aciiverse/generator-aciifx-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "AciiFX Generator",
   "main": "generators/index.js",
   "repository": "github:Aciiverse/AciiFX-CLI",
