@@ -79,3 +79,23 @@ Um eine neue Route zu erstellen, erstellst du eine neue Typescript-Datei. Lege d
 | Spiele | /games/:id | games.route.ts | Anzeige eines Spieles |
 | Spiele | /games/:id/scoreboard | games.route.ts | Anzeige der Punkte eines Spieles |
 | Spiele | /games/:id/players | games.route.ts | Anzeige der Spieler eines Spieles |
+
+#### API Types (Types2FrontendApp)
+
+Du kannst deine API Types (Request & Response) automatisch für's Frontend erreichbar machen.
+
+1. Erstelle dafür alle Requests und Response Types in ```./aciiFX/src/lib/types/api.types.ts```.
+Die Namneskonvention der Typen ist wie folgt: ```{Request Art (Get, Post, Put, Delete)}{Name der Route}{Req oder Res}``` Bsp: ```GetUsersLoginReq```. Hierzu gehören folgende Typen:
+
+- Request Types: Alle Typen, die die Body-Daten abbilden, die du vom Frontend bekommst:
+
+        const body: GetUsersLoginReq = req.body;
+
+- Response Types: Alle Typen, die ans Frontend geschickt werden:
+
+        return res.status(200).send({
+                <Deine Daten>
+        } as GetUsersLoginRes);
+
+2. Um die Typen erreichbar zu machen führe den Befehl aus ```npm run export:types```
+3. Jetzt hat sich der Ordner ```./apiTypes``` generiert. Diese Typen können jetzt einfach vom Frontend wie Module importiert werden.
