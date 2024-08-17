@@ -1,6 +1,6 @@
 {
   "name": "@aciiverse/generator-aciifx-cli",
-  "version": "0.2",
+  "version": "0.2.0",
   "description": "aciiFX generator",
   "main": "generators/index.js",
   "repository": "github:Aciiverse/aciiFX-CLI",
@@ -8,7 +8,13 @@
     "build": "tsc --watch",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "template",
+    "generator",
+    "api",
+    "express",
+    "acii"
+  ],
   "author": "",
   "license": "MIT",
   "files": [
