@@ -3,14 +3,26 @@ const chalk = require('chalk');
 import yosay = require('yosay');
 import path = require('path');
 
+interface PromptAnswers {
+  demo: boolean
+}
 module.exports = class extends Generator {
-  prompting() {
+  answers: PromptAnswers;
+  async prompting() {
     // Have Yeoman greet the user.
     this.log(
       yosay(
         `Welcome to the ${chalk.red('generator-aciifx-cli')} generator!`
       )
     );
+
+    this.answers = await this.prompt([
+      {
+        type: "confirm",
+        name: "demo",
+        message: "Would you like to generate the demo dir too? (Use this only for test or playground projects)",
+      }
+    ]);
   }
 
   writing() {
@@ -43,6 +55,15 @@ module.exports = class extends Generator {
       this.templatePath('aciiFX/.env-template'),
       this.destinationPath('aciiFX/.env-template')
     );
+
+    // copy demo file
+    if (this.answers.demo) {
+      // -> demo direction install
+      this.fs.copy(
+        this.templatePath('demo'),
+        this.destinationPath('demo')
+      );
+    }
   }
 
   install() {
