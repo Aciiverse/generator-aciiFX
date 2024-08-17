@@ -1,9 +1,9 @@
 {
   "name": "@aciiverse/generator-aciifx-cli",
-  "version": "0.1.4",
-  "description": "AciiFX Generator",
+  "version": "0.2",
+  "description": "aciiFX generator",
   "main": "generators/index.js",
-  "repository": "github:Aciiverse/AciiFX-CLI",
+  "repository": "github:Aciiverse/aciiFX-CLI",
   "scripts": {
     "build": "tsc --watch",
     "test": "jest"

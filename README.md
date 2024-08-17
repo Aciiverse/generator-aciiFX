@@ -1,4 +1,4 @@
-# AciiFX-CLI
+# aciiFX-CLI
 
 > Simple & Powerful Aciiverse NodeTS Backend
 > [Here](https://) is the doc also in english.
@@ -9,7 +9,7 @@
 
 ## Credits
 
-### AciiFX
+### aciiFX
 
 - [bcryptjs](https://github.com/kelektiv/node.bcrypt.js)
 - [concurrently](https://github.com/open-cli-tools/concurrently)
@@ -53,7 +53,7 @@
 
         npm install -g yo
 
-2. Installiere den AciiFX-CLI generator
+2. Installiere den aciiFX-CLI generator
 
         npm i -g @aciiverse/generator-aciifx-cli
 

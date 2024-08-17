@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aciiverse/AciiFX.git"
+    "url": "git+https://github.com/Aciiverse/aciiFX.git"
   },
   "author": "Flowtastisch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Aciiverse/AciiFX/issues"
+    "url": "https://github.com/Aciiverse/aciiFX/issues"
   },
-  "homepage": "https://github.com/Aciiverse/AciiFX#readme",
+  "homepage": "https://github.com/Aciiverse/aciiFX#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",

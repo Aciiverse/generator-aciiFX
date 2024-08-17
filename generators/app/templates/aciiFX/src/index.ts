@@ -34,5 +34,5 @@ app.use(cors());
 app.use('/api', router);
 
 app.listen(port, () => {
-    console.log(`AciiFX started at ${serviceURL}`);
+    console.log(`aciiFX started at ${serviceURL}`);
 });
