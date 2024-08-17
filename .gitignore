@@ -1,2 +1,4 @@
-dist
 node_modules
+coverage
+generators/*/*.js
+generators/app/templates/apiTypes

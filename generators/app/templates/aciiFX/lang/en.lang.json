@@ -1,0 +1,13 @@
+{
+    "err.aciifx.unvalidSession": "Your session is invalid",
+    "err.aciifx.usernameExists": "This username is already in use",
+    "err.aciifx.registration": "Registration failed",
+    "err.aciifx.userOrPass": "The username or password is incorrect",
+    "err.aciifx.mustLoggedIn": "You must be logged in",
+    "err.aciifx.nameLength": "The username should be at least 3 characters long",
+    "err.aciifx.passwordLength": "The password should be at least 6 characters long",
+    "err.aciifx.passwordsMatch": "Both passwords must match",
+    "suc.aciifx.registration": "Successfully registered",
+    "suc.aciifx.login": "Successfully logged in",
+    "testText": "I test"
+}

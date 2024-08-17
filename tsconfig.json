@@ -1,17 +1,16 @@
 {
     "compilerOptions": {
-        "module": "commonJS",
-        "target": "ES6",
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strict": true,
-        "sourceMap": true,
-        "rootDir": "src",
-        "outDir": "./dist",
+        "module": "commonjs",
+        "sourceMap": false,
+        "target": "ES2022",
+        "rootDir": "generators/app/src",
+        "outDir": "generators/app/",
         "types": ["node"]
     },
+    "include": ["generators/*/src/**/*.ts"],
     "exclude": [
         "node_modules",
-        "**/node_modules/*"
+        "**/node_modules/*",
+        "generators/*/templates"
     ]
 }

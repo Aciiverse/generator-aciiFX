@@ -1,22 +1,48 @@
 {
-  "name": "aciifx",
-  "version": "1.0.0",
-  "description": "Simple & Powerful Aciiverse NodeTS Backend",
-  "main": "index.js",
+  "name": "@aciiverse/generator-aciifx-cli",
+  "version": "0.2.0",
+  "description": "aciiFX generator",
+  "main": "generators/index.js",
+  "repository": "github:Aciiverse/aciiFX-CLI",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --watch",
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Aciiverse/AciiFX.git"
-  },
-  "author": "Flowtastisch",
+  "keywords": [
+    "template",
+    "generator",
+    "api",
+    "express",
+    "acii"
+  ],
+  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Aciiverse/AciiFX/issues"
+  "files": [
+    "generators"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/yeoman-assert": "^3.1.4",
+    "@types/yeoman-generator": "^5.2.14",
+    "@types/yosay": "^2.0.3",
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.6.0",
+    "eslint-config-xo": "^0.27.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^26.1.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.7.0"
   },
-  "homepage": "https://github.com/Aciiverse/AciiFX#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "dependencies": {
-    "typescript": "^5.5.3"
+    "chalk": "^2.1.0",
+    "yeoman-generator": "^3.1.1",
+    "yosay": "^2.0.2"
   }
 }
