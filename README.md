@@ -57,11 +57,15 @@
 
         npm i -g @aciiverse/generator-aciifx-cli
 
-3. Führe den Generator in deinem Wunschordner aus (!Achtung Der Generator generiert einen eigenen Ordner in deinem Ordner!)
+3. Zur genaueren Auswahl stehen folgende Optionen
+
+- **Demo Ordner:** Installiere den nur, wenn du aciiFX testen willst. Es generiert dir eine simple HTML Seite, die die Hauptfunktionen von aciiFX zeigen sollen. Führe dazu die ```./demo/index.html``` Datei im Browser aus.
+
+4. Führe den Generator in deinem Wunschordner aus (!Achtung Der Generator generiert einen eigenen Ordner in deinem Ordner!)
 
         yo @aciiverse/aciifx-cli
 
-4. Führe jetzt den Befehlt `npm run start:dev` aus oder alternativ kannst du in die `package.json` gehen und findest bei den `scripts` den Befehl `start:dev`
+5. Führe jetzt den Befehlt `npm run start:dev` aus oder alternativ kannst du in die `package.json` gehen und findest bei den `scripts` den Befehl `start:dev`
 
 ### Entwickeln mit aciiFX
 
