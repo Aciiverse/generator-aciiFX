@@ -1,9 +1,6 @@
-import Generator from 'yeoman-generator/dist';
-// const Generator from 'yeoman-generator';
-// const Generator = require('yeoman-generator');
-import chalk from 'chalk';
+import Generator = require('yeoman-generator');
+const chalk = require('chalk');
 import yosay = require('yosay');
-// import yosay = require('yosay');
 import path = require('path');
 
 
