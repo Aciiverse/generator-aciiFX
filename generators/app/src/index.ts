@@ -33,8 +33,9 @@ module.exports = class extends Generator {
         globOptions: {
           ignore: [
             'aciiFX/.env',
+            'aciiFX/.gitignore-template',
             'node_modules',
-            'aciiFX/dist'
+            'aciiFX/dist',
           ]
         }
       }
@@ -54,6 +55,12 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('aciiFX/.env-template'),
       this.destinationPath('aciiFX/.env-template')
+    );
+
+    // copy template gitignore file 
+    this.fs.copy(
+      this.templatePath('aciiFX/.gitignore-template'),
+      this.destinationPath('aciiFX/.gitignore')
     );
 
     // copy demo file

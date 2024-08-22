@@ -1,6 +1,6 @@
 {
   "name": "@aciiverse/generator-aciifx-cli",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "aciiFX generator",
   "main": "generators/index.js",
   "repository": "github:Aciiverse/aciiFX-CLI",
@@ -18,7 +18,17 @@
   "author": "",
   "license": "MIT",
   "files": [
-    "generators"
+    "generators/app/src",
+    "generators/app/templates/aciiFX/lang",
+    "generators/app/templates/aciiFX/src",
+    "generators/app/templates/aciiFX/.env-template",
+    "generators/app/templates/aciiFX/.gitignore-template",
+    "generators/app/templates/aciiFX/package.json",
+    "generators/app/templates/aciiFX/package-lock.json",
+    "generators/app/templates/aciiFX/tsconfig.json",
+    "generators/app/templates/apiTypes",
+    "generators/app/templates/demo",
+    "generators/app/index.js"
   ],
   "devDependencies": {
     "@types/jest": "^29.5.12",

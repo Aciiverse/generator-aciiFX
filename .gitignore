@@ -2,3 +2,7 @@ node_modules
 coverage
 generators/*/*.js
 generators/app/templates/apiTypes
+generators/app/templates/aciiFX/node_modules
+generators/app/templates/aciiFX/dist
+generators/app/templates/aciiFX/.env
+!generators/app/templates/aciiFX/.gitignore
