@@ -1,14 +1,11 @@
-import Generator = require('yeoman-generator');
-const chalk = require('chalk');
-import yosay = require('yosay');
-import path = require('path');
+'use strict';
+import Generator from 'yeoman-generator';
+import chalk from 'chalk';
+import yosay from 'yosay';
+import path from 'path';
 
-
-interface PromptAnswers {
-  demo: boolean
-}
-module.exports = class extends Generator {
-  answers: PromptAnswers;
+export default class extends Generator {
+  answers;
   async prompting() {
     // Have Yeoman greet the user.
     this.log(
@@ -35,7 +32,7 @@ module.exports = class extends Generator {
           ignore: [
             'aciiFX/.env',
             'aciiFX/.gitignore-template',
-            'node_modules',
+            'aciiFX/node_modules',
             'aciiFX/dist',
           ]
         }
@@ -76,13 +73,11 @@ module.exports = class extends Generator {
 
   install() {
     const targetDir = path.join(this.destinationRoot(), 'aciiFX');
-
     process.chdir(targetDir);
-    this.install()
-    // this.installDependencies({
-    //   bower: false,
-    //   npm: true,
-    //   yarn: false,
-    // });
+    this.log(chalk.blueBright('Installing node modules...'));
+    this.spawnSync('npm', ['install'], {
+        cwd: targetDir
+    });
+    this.log(chalk.greenBright('Node modules installed'));
   }
 };
