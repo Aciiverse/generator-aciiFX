@@ -1,7 +1,11 @@
-import Generator = require('yeoman-generator');
-const chalk = require('chalk');
+import Generator from 'yeoman-generator/dist';
+// const Generator from 'yeoman-generator';
+// const Generator = require('yeoman-generator');
+import chalk from 'chalk';
 import yosay = require('yosay');
+// import yosay = require('yosay');
 import path = require('path');
+
 
 interface PromptAnswers {
   demo: boolean
@@ -77,10 +81,11 @@ module.exports = class extends Generator {
     const targetDir = path.join(this.destinationRoot(), 'aciiFX');
 
     process.chdir(targetDir);
-    this.installDependencies({
-      bower: false,
-      npm: true,
-      yarn: false,
-    });
+    this.install()
+    // this.installDependencies({
+    //   bower: false,
+    //   npm: true,
+    //   yarn: false,
+    // });
   }
 };
