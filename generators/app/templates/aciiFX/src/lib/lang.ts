@@ -68,11 +68,14 @@ export module Language {
             return translations;
 
         } catch (error) {
-            console.error("Error at translation file loading:", error);
             if (    !(error instanceof Error)
                 ||  (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND") {
                 // -> unexpected error
+                console.error("Error at translation file loading:", error);
                 throw Error;
+            } else {
+                // -> expected error if no file dir founded
+                console.info(`language file for '${lang}' not founded`);
             }
             return undefined;
         }
