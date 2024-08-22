@@ -24,7 +24,7 @@ switch (system) {
 }
 
 // Error handling
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', (err) => {
     console.error(err);
 });
 
