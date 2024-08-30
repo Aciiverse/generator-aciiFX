@@ -1,4 +1,4 @@
- {
+{
     "compilerOptions": {
         "module": "commonJS",
         "target": "ES6",
@@ -10,8 +10,5 @@
         "types": ["node"],
         "resolveJsonModule": true
     },
-    "exclude": [
-        "node_modules",
-        "**/node_modules/*"
-    ]
+    "exclude": ["node_modules", "**/node_modules/*"]
 }

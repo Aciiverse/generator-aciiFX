@@ -16,11 +16,11 @@
         margin-bottom: 1rem;
         width: auto;
         border-radius: 6px;
-        border: solid 1px black
+        border: solid 1px black;
     }
 }
 
 .required:after {
-    content: '*';
+    content: "*";
     color: red;
 }
