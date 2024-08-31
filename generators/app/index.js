@@ -22,7 +22,7 @@ export default class extends Generator {
     writing() {
         this.fs.copy(this.templatePath("aciiFX"), this.destinationPath("aciiFX"), {
             globOptions: {
-                ignore: ["aciiFX/.env", "aciiFX/.gitignore-template", "aciiFX/node_modules", "aciiFX/dist"],
+                ignore: ["aciiFX/.env", "aciiFX/.gitignore-template", "aciiFX/.prettierrc-template", "aciiFX/node_modules", "aciiFX/dist"],
             },
         });
 
@@ -38,6 +38,9 @@ export default class extends Generator {
 
         // copy template gitignore file
         this.fs.copy(this.templatePath("aciiFX/.gitignore-template"), this.destinationPath("aciiFX/.gitignore"));
+
+        // copy template prettier file
+        this.fs.copy(this.templatePath("aciiFX/.prettierrc-template"), this.destinationPath("aciiFX/.prettierrc"));
 
         // copy demo file
         if (this.answers.demo) {
