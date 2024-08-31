@@ -1,6 +1,6 @@
 {
   "name": "@aciiverse/generator-aciifx-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "description": "aciiFX generator",
   "main": "generators/index.js",
@@ -23,6 +23,7 @@
     "generators/app/templates/aciiFX/src",
     "generators/app/templates/aciiFX/.env-template",
     "generators/app/templates/aciiFX/.gitignore-template",
+    "generators/app/templates/aciiFX/.prettierrc-template",
     "generators/app/templates/aciiFX/package.json",
     "generators/app/templates/aciiFX/package-lock.json",
     "generators/app/templates/aciiFX/tsconfig.json",
