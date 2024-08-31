@@ -1,6 +1,6 @@
 export interface LangGetTextOptions {
     language?: string;
-    values?: string[];
+    values?: string | string[];
 }
 
 interface LangFile {
@@ -20,7 +20,8 @@ export module lang {
     export function getText(key: string, options?: LangGetTextOptions): string {
         const languageArr: string[] = [],
             configLanguageKey = process.env.FX_LANG_DEFAULT_LANGUAGE;
-        let foundTxt = undefined as string | undefined;
+        let foundTxt = undefined as string | undefined,
+            values = options?.values;
 
         // Add manually defined language key to []
         if (options) {
@@ -63,12 +64,24 @@ export module lang {
             }
         });
 
-        if (foundTxt && typeof foundTxt === "string") {
-            return foundTxt;
-        } else {
+        if (!foundTxt || typeof foundTxt !== "string") {
+            // -> text not founded
             console.error(`LanguageModule: Text "${key}" not founded`);
-            return "";
+            return key;
         }
+
+        // replace values
+        if (!values) {
+            // -> options not found
+            return foundTxt;
+        } else if (typeof values === "string") {
+            // -> options type is a string / not an array
+            values = [values];
+        }
+        values?.forEach((e, i) => {
+            foundTxt = foundTxt?.replace(`{${i}}`, e);
+        });
+        return foundTxt;
     }
 
     /**

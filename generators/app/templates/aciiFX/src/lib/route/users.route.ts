@@ -104,7 +104,7 @@ router.post("/register", validateRegister, async (req, res) => {
         // username already in use
         if (users && Array.isArray(users) && users.length) {
             return res.status(409).send({
-                message: lang.getText("err.aciifx.usernameExists"),
+                message: lang.getText("err.aciifx.usernameExists", { values: body.username! }),
             } as GetBaseRes);
         }
 
