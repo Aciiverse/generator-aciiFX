@@ -1,13 +1,27 @@
 export interface LangGetTextOptions {
     language?: string;
-    values?: string[];
+    values?: string | string[];
 }
 
-export module Language {
+interface LangFile {
+    [key: string]: string;
+}
+
+export module lang {
+    /**
+     * @method gets the language text
+     * @param {string} key query for sql database
+     * @param {LangGetTextOptions?} options optional for `language` & `values`
+     * @returns {string} the searched text
+     * @author Flowtastisch
+     * @memberof Aciiverse
+     * @date 11.08.2024
+     */
     export function getText(key: string, options?: LangGetTextOptions): string {
         const languageArr: string[] = [],
             configLanguageKey = process.env.FX_LANG_DEFAULT_LANGUAGE;
-        let foundTxt = undefined as string | undefined;
+        let foundTxt = undefined as string | undefined,
+            values = options?.values;
 
         // Add manually defined language key to []
         if (options) {
@@ -50,17 +64,37 @@ export module Language {
             }
         });
 
-        if (foundTxt && typeof foundTxt === "string") {
-            return foundTxt;
-        } else {
+        if (!foundTxt || typeof foundTxt !== "string") {
+            // -> text not founded
             console.error(`LanguageModule: Text "${key}" not founded`);
-            return "";
+            return key;
         }
+
+        // replace values
+        if (!values) {
+            // -> options not found
+            return foundTxt;
+        } else if (typeof values === "string") {
+            // -> options type is a string / not an array
+            values = [values];
+        }
+        values?.forEach((e, i) => {
+            foundTxt = foundTxt?.replace(`{${i}}`, e);
+        });
+        return foundTxt;
     }
 
-    function importLangFile(lang: string) {
+    /**
+     * @method imports a language file dynamically
+     * @param {string} lang the language key for example: `en`, `de`, `fr`
+     * @returns {LangFile | undefined} the requested language file
+     * @author Flowtastisch
+     * @memberof Aciiverse
+     * @date 11.08.2024
+     */
+    function importLangFile(lang: string): LangFile | undefined {
         try {
-            const translations: { [key: string]: string } | undefined = require(`../../lang/${lang}.lang.json`);
+            const translations: LangFile | undefined = require(`../../lang/${lang}.lang.json`);
             return translations;
         } catch (error) {
             if (!(error instanceof Error) || (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND") {
