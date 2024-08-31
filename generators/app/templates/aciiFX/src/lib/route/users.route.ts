@@ -32,7 +32,6 @@ router.post("/login", async (req, res) => {
         });
     }
 
-    // NEW BEGIN
     try {
         const result: UsersResult = await db.query("SELECT * FROM users WHERE username = ?;", [body.username]);
         if (!result) {

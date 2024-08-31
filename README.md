@@ -1,11 +1,12 @@
 # aciiFX-CLI
 
 > Simple & Powerful Aciiverse NodeTS Backend
-> [Here](https://) is the doc also in english.
 
-## Entwickler\*Innen
+> [Hier](/README.de.md) ist die Doku ebenfalls in deutsch.
 
--   [Flowtastisch](https://)
+## Developer
+
+-   [Flowtastisch](https://github.com/flowtastisch)
 
 ## Credits
 
@@ -19,87 +20,247 @@
 -   [javascript](https://www.javascript.com/)
 -   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 -   [mysql2](https://github.com/sidorares/node-mysql2)
+-   [prettier](https://github.com/prettier/prettier)
 -   [uuid](https://github.com/uuidjs/uuid)
 -   [typescript](https://github.com/Microsoft/TypeScript)
 
-### Zusätzlich für den Generator
+### Additionally for the generator
 
 -   [coveralls](https://github.com/nickmerwin/node-coveralls)
 -   [jest](https://jestjs.io/)
 -   [yeoman](https://yeoman.io/)
 
-### Zusätzlich für die Demo App
+### Additionally for the demo app
 
 -   html5
 -   css3
 
 ## Features
 
--   simples und leistungsstarkes API Grundgerüst
--   Usersystem inkl. Middleware
--   simples & modulares Übersetzungsmodul
+-   simple and powerful **api basic framework**
+-   **user system** with middleware
+-   simple & modular **translation module**
+-   types from backend to frontend (**Types2FrontendApp**)
 
-## Eigenes Projekt generieren
+## Generate your own project
 
-### Was du brauchst
+### What you need
 
 -   NodeJS (>= vXX)
 -   TypeScript `npm install -g typescript`
 -   Erreichbare MySQL Datenbank
 
-### Schritt für Schritt
+### Installation
 
-1.  Installiere Yeoman
+1.  Install Yeoman
 
         npm install -g yo
 
-2.  Installiere den aciiFX-CLI generator
+2.  Install the aciiFX-CLI generator
 
         npm i -g @aciiverse/generator-aciifx-cli
 
-3.  Zur genaueren Auswahl stehen folgende Optionen
+3.  The following options are available for a more detailed selection
 
--   **Demo Ordner:** Installiere den nur, wenn du aciiFX testen willst. Es generiert dir eine simple HTML Seite, die die Hauptfunktionen von aciiFX zeigen sollen. Führe dazu die `./demo/index.html` Datei im Browser aus.
+-   **demo directory:** Only install it if you want to test aciifx. It generates you a simple html page that should show the main functions of aciiFX.cli. Open the `./demo/index.html` file inside your browser.
 
-4.  Führe den Generator in deinem Wunschordner aus (!Achtung Der Generator generiert einen eigenen Ordner in deinem Ordner!)
+4.  Perform the generator in your desired folder (!Attention The generator generates its own folder in your folder!)
 
         yo @aciiverse/aciifx-cli
 
-5.  Führe jetzt den Befehlt `npm run start:dev` aus oder alternativ kannst du in die `package.json` gehen und findest bei den `scripts` den Befehl `start:dev`
+5.  Now run the command `npm run start:dev` or alternatively you can go to the `package.json` and find the command `start:dev` at `scripts`
 
-### Entwickeln mit aciiFX
+## Develop with aciiFX
 
-> Entwickeln tust du im `./aciiFX/src/` Ordner
+> You develop in the `./aciiFX/src/` directory
 
-#### Neue Route (Module)
+> Here are a few examples of how to use the functions:
 
-Um eine neue Route zu erstellen, erstellst du eine neue Typescript-Datei. Lege die neue Datei folgendermaßen ab: `./aciiFX/src/lib/route/{Deine Route}.route.ts` ab. {Deine Route} ersetzt du mit der gewünschten Route. Hier sind ein paar Beispiele _(Die `/service` Route ist eine Ausnahme)_:
+### Routes
 
-| Modul  | Route                 | Datei          | Usecase                           |
-| ------ | --------------------- | -------------- | --------------------------------- |
-| User   | /users/login          | users.route.ts | Login des Users                   |
-| User   | /users/register       | users.route.ts | Registrieren des Users            |
-| Spiele | /games                | games.route.ts | Anzeige aller Spiele              |
-| Spiele | /games/:id            | games.route.ts | Anzeige eines Spieles             |
-| Spiele | /games/:id/scoreboard | games.route.ts | Anzeige der Punkte eines Spieles  |
-| Spiele | /games/:id/players    | games.route.ts | Anzeige der Spieler eines Spieles |
+#### New Route (Modules)
 
-#### API Types (Types2FrontendApp)
+To create a new route, create a new typecript file. Put the new file as follows: `./aciiFX/src/lib/route/{your route}.route.ts`. Replace {your route} with your desired route. Here are a few examples _(The `/service` route is an exception)_:
 
-Du kannst deine API Types (Request & Response) automatisch für's Frontend erreichbar machen.
+| Module | Route                 | File           | Usecase                          |
+| ------ | --------------------- | -------------- | -------------------------------- |
+| Users  | /users/login          | users.route.ts | Login the Users                  |
+| Users  | /users/register       | users.route.ts | Register the user                |
+| Games  | /games                | games.route.ts | Display of all games             |
+| Games  | /games/:id            | games.route.ts | Display of a game                |
+| Games  | /games/:id/scoreboard | games.route.ts | Display of the points of a game  |
+| Games  | /games/:id/players    | games.route.ts | Display of the players of a game |
 
-1. Erstelle dafür alle Requests und Response Types in `./aciiFX/src/lib/types/api.types.ts`.
-   Die Namneskonvention der Typen ist wie folgt: `{Request Art (Get, Post, Put, Delete)}{Name der Route}{Req oder Res}` Bsp: `GetUsersLoginReq`. Hierzu gehören folgende Typen:
+#### The content of your routing file should look initially as follows (for example: `games.route.ts`):
 
--   Request Types: Alle Typen, die die Body-Daten abbilden, die du vom Frontend bekommst:
+    import express = require("express");
+    import { db } from "../db";
 
-          const body: GetUsersLoginReq = req.body;
+    const router = express.Router();
 
--   Response Types: Alle Typen, die ans Frontend geschickt werden:
+    router.get("/", (req: express.Request, res: express.Response) => {
+        // Handles GET "/games"
+    });
 
-          return res.status(200).send({
-                  <Deine Daten>
-          } as GetUsersLoginRes);
+    router.get("/game/:id", (req: express.Request, res: express.Response) => {
+        // Handles GET "/game/1", "/game/2", "/game/3", etc...
+    });
 
-2. Um die Typen erreichbar zu machen führe den Befehl aus `npm run export:types`
-3. Jetzt hat sich der Ordner `./apiTypes` generiert. Diese Typen können jetzt einfach vom Frontend wie Module importiert werden.
+    module.exports = router;
+
+#### Route output (Return) :
+
+> A few examples of how you can hand over to Express data to the frontend
+
+-   A standard output only with a message:
+
+        res.status(202).send({
+            message: "Success",
+        });
+
+-   An output with message and file:
+
+        const result = [
+            {
+                id: 1,
+                name: "Assassin's Creed Shadows"
+            },
+            {
+                id: 2,
+                name: "Assassin's Creed Valhallah"
+            }
+        ];
+
+        res.status(202).send({
+            message: "Success",
+            data: result
+        });
+
+-   An image or other file (saved as a blob):
+
+        const image = {
+            data: <...>,
+            type: 'image/png'
+        }
+
+        res.setHeader('Content-Type', image.type);
+        res.end(image.data, 'binary');
+
+### API Types (Types2FrontendApp)
+
+You can automatically make your API types (Request and Response) available for the frontend.
+
+1. Create all the requests and response types in `./aciiFX/src/lib/types/api.types.ts`.
+   The name convention of the types is as follows: `{Request Art (Get, Post, Put, Delete)}{Name der Route}{Req oder Res}` For example: `GetUsersLoginReq`. This includes the following types:
+
+-   Request Types: All types that map the body data that you get from the frontend:
+
+        const body: GetUsersLoginReq = req.body;
+
+-   Response types: All types that are sent to the frontend:
+
+        return res.status(200).send({
+                <Deine Daten>
+        } as GetUsersLoginRes);
+
+2. To make the guys accessible, carry out the command `npm run export:types`
+3. Now the folder `./apiTypes` is generated. These types can now simply be imported from the frontend like modules.
+
+### Translation module (Lang)
+
+To always get the current language, you can use the lang module.
+
+-   In the folder `./aciiFX/lang` you will find .json files. You can add your own for e.g. french -> `fr.lang.json`
+-   In the .env file you set a standard language.
+-   Which text is taken first is decided as follows:
+    1. the language that is given to the function
+    2. the language that is defined in the `.env` (`FX_LANG_DEFAULT_LANGUAGE`)
+    3. english `en.lang.json`
+-   You can get a text as follows:
+
+        // In config file: { "err.test": "Hello World!" }
+        const text = lang.getText("err.test");
+        console.log(text);
+        // Hello World!
+
+-   You can also give values as an string:
+
+        // In config file: { "err.test": "Hello {0}!" }
+        const text = lang.getText("err.test", { values: "Ezio" });
+        console.log(text);
+        // Hello World!
+
+    or as an array:
+
+        // In config file: { "err.test": "Hello {0} {1}!" }
+        const text = lang.getText("err.test", { values: ["Ezio", "Auditore"] });
+        console.log(text);
+        // Hello Ezio Auditore!
+
+-   The requested language can also be defined with `options`:
+
+        // In de.lang.json config file: { "err.test": "Hello World!" }
+        // In en.lang.json config file: { "err.test": "Hallo Welt!" }
+        // In .env: FX_LANG_DEFAULT_LANGUAGE=en
+        const text = lang.getText("err.test", { lang: 'de' });
+        console.log(text);
+        // Hallo Welt!
+
+### SQL Queries
+
+SQL Queries are through the `db` module simplified. As in this example, you can carry out an SQL query without tanging yourself into promise nesting
+
+-   a query looks like this:
+
+        try {
+            const result: GamesResult = await db.query("SELECT * FROM games WHERE gameId = ?;", [gameId]);
+        } catch (error) {
+            // -> error inside sql query
+            console.error(error);
+        }
+
+-   the queries can be combined as desired:
+
+          router.get("/games/:id", async (req, res) => {
+              const gameId = req.params.id;
+              try {
+                  // execute sql query
+                  const games: GamesResult = await db.query("SELECT * FROM games WHERE gameId = ?;", [gameId]);
+
+                  // validate
+                  if (!games) {
+                      // -> games are undefined
+                      throw Error; // go into catch block
+                  } else if (Array.isArray(games) && !games.length) {
+                      // -> No data founded
+                      throw Error; // go into catch block
+                  }
+
+                  // optional second, third, etc... query BEGIN
+                  const players: GamesResult = await db.query("SELECT * FROM players WHERE gameId = ?;", [gameId]);
+
+                  // validate
+                  if (!players) {
+                      // -> games are undefined
+                      throw Error; // go into catch block
+                  } else if (Array.isArray(players) && !players.length) {
+                      // -> No data founded
+                      return res.status(401).send({
+                          message: lang.getText("err.noPlayers founded"),
+                      });
+                  }
+                  // optional second, third, etc... query END
+
+                  // success
+                  res.status(202).send({
+                      message: lang.getText("suc.gamesFounded"),
+                      data: games
+                  });
+              } catch (error) {
+                  // error occured
+                  console.error(error);
+                  res.status(401).send({
+                      message: lang.getText("err.insideSQLQuery"),
+                  });
+              }
+          });
