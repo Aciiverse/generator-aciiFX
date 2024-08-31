@@ -1,38 +1,39 @@
 {
-  "name": "aciifx",
-  "version": "1.0.0",
-  "description": "Simple & Powerful Aciiverse NodeTS Backend",
-  "main": "dist/index.js",
-  "scripts": {
-    "start:prod": "npm run test && npm run start",
-    "start:dev": "concurrently \"npm run build:watch\" \"npm run sleep && node --watch dist/index.js\"",
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "export:types": "tsc -d --outDir ../apiTypes --emitDeclarationOnly true ./src/lib/types/api.types.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sleep": "node -e \"setTimeout(() => process.exit(0), 2000)\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Aciiverse/aciiFX.git"
-  },
-  "author": "Flowtastisch",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Aciiverse/aciiFX/issues"
-  },
-  "homepage": "https://github.com/Aciiverse/aciiFX#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
-    "typescript": "^5.5.3",
-    "uuid": "^10.0.0"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/uuid": "^10.0.0",
-    "concurrently": "^8.2.2"
-  }
+    "name": "aciifx",
+    "version": "1.1.0",
+    "description": "Simple & Powerful Aciiverse NodeTS Backend",
+    "main": "dist/index.js",
+    "scripts": {
+        "start:prod": "npm run test && npm run start",
+        "start:dev": "concurrently \"npm run build:watch\" \"npm run sleep && node --watch dist/index.js\"",
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "build:watch": "tsc --watch",
+        "export:types": "tsc -d --outDir ../apiTypes --emitDeclarationOnly true ./src/lib/types/api.types.ts",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sleep": "node -e \"setTimeout(() => process.exit(0), 2000)\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Aciiverse/aciiFX.git"
+    },
+    "author": "Flowtastisch",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Aciiverse/aciiFX/issues"
+    },
+    "homepage": "https://github.com/Aciiverse/aciiFX#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2",
+        "typescript": "^5.5.4",
+        "uuid": "^10.0.0"
+    },
+    "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/uuid": "^10.0.0",
+        "concurrently": "^8.2.2",
+        "prettier": "^3.3.3"
+    }
 }
