@@ -1,39 +1,36 @@
 export interface LangGetTextOptions {
     language?: string;
-    values?: string[]
+    values?: string[];
 }
 
 export module Language {
     export function getText(key: string, options?: LangGetTextOptions): string {
-        const   languageArr: string[] = [],
-                configLanguageKey = process.env.FX_LANG_DEFAULT_LANGUAGE;
+        const languageArr: string[] = [],
+            configLanguageKey = process.env.FX_LANG_DEFAULT_LANGUAGE;
         let foundTxt = undefined as string | undefined;
 
         // Add manually defined language key to []
         if (options) {
             // -> options set
-            if (    options.language 
-                &&  typeof options.language === 'string' ) {
+            if (options.language && typeof options.language === "string") {
                 // -> language set
                 languageArr.push(options.language);
             }
         }
 
         // Add config language key to []
-        if (    configLanguageKey
-            &&  typeof configLanguageKey === 'string'
-            &&  !languageArr.includes(configLanguageKey) ) {
+        if (configLanguageKey && typeof configLanguageKey === "string" && !languageArr.includes(configLanguageKey)) {
             // -> config language code valid & unique
             languageArr.push(configLanguageKey);
         }
-        
+
         // Add default language key to []
-        if (!languageArr.includes('en')) {
+        if (!languageArr.includes("en")) {
             // -> default language code unique
-            languageArr.push('en');
+            languageArr.push("en");
         }
 
-        languageArr.some(code => {
+        languageArr.some((code) => {
             // Get Language file
             const defaultLang = importLangFile(code);
 
@@ -42,7 +39,7 @@ export module Language {
                 try {
                     const langTxt = defaultLang[key];
 
-                    if (langTxt && typeof langTxt === 'string') {
+                    if (langTxt && typeof langTxt === "string") {
                         // -> langtxt valid
                         foundTxt = langTxt;
                         return true;
@@ -52,24 +49,21 @@ export module Language {
                 }
             }
         });
-        
-        if (foundTxt && typeof foundTxt === 'string') {
+
+        if (foundTxt && typeof foundTxt === "string") {
             return foundTxt;
         } else {
             console.error(`LanguageModule: Text "${key}" not founded`);
-            return '';
+            return "";
         }
     }
 
-    function importLangFile (lang: string) {
+    function importLangFile(lang: string) {
         try {
-
-            const translations: {[key: string]: string} | undefined = require(`../../lang/${lang}.lang.json`);
+            const translations: { [key: string]: string } | undefined = require(`../../lang/${lang}.lang.json`);
             return translations;
-
         } catch (error) {
-            if (    !(error instanceof Error)
-                ||  (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND") {
+            if (!(error instanceof Error) || (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND") {
                 // -> unexpected error
                 console.error("Error at translation file loading:", error);
                 throw Error;
