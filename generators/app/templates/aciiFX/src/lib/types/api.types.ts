@@ -22,8 +22,4 @@ export interface GetUsersRegisterReq {
     password?: string;
     passwordRepeat?: string;
 }
-export interface GetUsersRegisterRes extends GetBaseRes {
-    token: string;
-    tokenExp: number;
-    user: Omit<UsersTable, "password">;
-}
+export interface GetUsersRegisterRes extends GetBaseRes {}

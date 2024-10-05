@@ -9,7 +9,8 @@
         "start": "node dist/index.js",
         "build": "tsc",
         "build:watch": "tsc --watch",
-        "export:types": "tsc -d --outDir ../apiTypes --emitDeclarationOnly true ./src/lib/types/api.types.ts",
+        "exportTypes:windows": "powershell Copy-Item -Recurse ./src/lib/types/* ../apiTypes",
+        "exportTypes:linux": "cp -r ./src/lib/types/* ../apiTypes",
         "test": "echo \"Error: no test specified\" && exit 1",
         "sleep": "node -e \"setTimeout(() => process.exit(0), 2000)\""
     },
@@ -25,12 +26,18 @@
     "homepage": "https://github.com/Aciiverse/aciiFX#readme",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "mysql2": "^3.11.0",
         "jsonwebtoken": "^9.0.2",
         "typescript": "^5.5.4",
         "uuid": "^10.0.0"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.6",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
         "@types/jsonwebtoken": "^9.0.6",
         "@types/uuid": "^10.0.0",
         "concurrently": "^8.2.2",
