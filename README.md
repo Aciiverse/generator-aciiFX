@@ -1,4 +1,4 @@
-# aciiFX-CLI
+# generator-aciiFX
 
 > Simple & Powerful Aciiverse NodeTS Backend
 
