@@ -10,7 +10,7 @@
 
 ## Credits
 
-### aciiFX
+### generator-aciiFX
 
 -   [bcryptjs](https://github.com/kelektiv/node.bcrypt.js)
 -   [concurrently](https://github.com/open-cli-tools/concurrently)
@@ -19,12 +19,18 @@
 -   [express](https://github.com/expressjs/express)
 -   [javascript](https://www.javascript.com/)
 -   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
--   [mysql2](https://github.com/sidorares/node-mysql2)
 -   [prettier](https://github.com/prettier/prettier)
 -   [uuid](https://github.com/uuidjs/uuid)
 -   [typescript](https://github.com/Microsoft/TypeScript)
 
-### Zusätzlich für den Generator
+### aciiFX-CLI
+
+-   [express](https://github.com/expressjs/express)
+-   [mysql2](https://github.com/sidorares/node-mysql2)
+-   [prettier](https://github.com/prettier/prettier)
+-   [typescript](https://github.com/Microsoft/TypeScript)
+
+### Zusätzlich für den YO Generator
 
 -   [coveralls](https://github.com/nickmerwin/node-coveralls)
 -   [jest](https://jestjs.io/)

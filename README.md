@@ -19,7 +19,6 @@
 -   [express](https://github.com/expressjs/express)
 -   [javascript](https://www.javascript.com/)
 -   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
--   [mysql2](https://github.com/sidorares/node-mysql2)
 -   [prettier](https://github.com/prettier/prettier)
 -   [uuid](https://github.com/uuidjs/uuid)
 -   [typescript](https://github.com/Microsoft/TypeScript)
@@ -28,6 +27,7 @@
 
 -   [express](https://github.com/expressjs/express)
 -   [mysql2](https://github.com/sidorares/node-mysql2)
+-   [prettier](https://github.com/prettier/prettier)
 -   [typescript](https://github.com/Microsoft/TypeScript)
 
 ### Additionally for the yo generator
