@@ -8,4 +8,4 @@ export interface UserData {
     registered: UsersTable["registered"];
 }
 
-export module Base {}
+export namespace Base {}

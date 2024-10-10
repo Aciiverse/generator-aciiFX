@@ -8,7 +8,11 @@ export interface UserRequest extends Request {
 }
 
 // Checks if the user is logged in
-export const isLoggedIn = (req: UserRequest, res: Response, next: NextFunction) => {
+export const isLoggedIn = (
+        req: UserRequest,
+        res: Response,
+        next: NextFunction
+    ) => {
         if (!req.headers.authorization) {
             // -> no authorization header sended
             return res.status(400).send({

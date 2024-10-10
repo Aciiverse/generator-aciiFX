@@ -13,7 +13,7 @@ import {
     GetUsersRegisterReq,
 } from "../types/api.types";
 import { ResultSetHeader } from "mysql2";
-import { db } from "../db";
+import { db } from "@aciiverse/aciifx-cli";
 const router = express.Router();
 
 export interface UsersResult extends Array<UsersTable>, ResultSetHeader {}

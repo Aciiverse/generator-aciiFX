@@ -7,7 +7,7 @@ interface LangFile {
     [key: string]: string;
 }
 
-export module lang {
+export namespace lang {
     /**
      * @method gets the language text
      * @param {string} key query for sql database
