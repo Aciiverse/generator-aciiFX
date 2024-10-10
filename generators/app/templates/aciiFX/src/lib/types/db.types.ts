@@ -1,5 +1,3 @@
-import { ResultSetHeader } from "mysql2";
-
 export interface UsersTable {
     uuid: string;
     username: string;
@@ -7,7 +5,6 @@ export interface UsersTable {
     password?: string;
     registered: Date;
     lastLogin?: Date;
-    verified: boolean;
-    isAdmin: boolean;
+    verified?: 1 | 0;
+    isAdmin?: 1 | 0;
 }
-export interface UsersResult extends Array<UsersTable>, ResultSetHeader {}

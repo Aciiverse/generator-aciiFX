@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt = require("jsonwebtoken");
-import { Language } from "../lang";
+import { lang } from "../lang";
 import { GetUsersRegisterReq } from "../types/api.types";
 
 export interface UserRequest extends Request {
@@ -8,11 +8,15 @@ export interface UserRequest extends Request {
 }
 
 // Checks if the user is logged in
-export const isLoggedIn = (req: UserRequest, res: Response, next: NextFunction) => {
+export const isLoggedIn = (
+        req: UserRequest,
+        res: Response,
+        next: NextFunction
+    ) => {
         if (!req.headers.authorization) {
             // -> no authorization header sended
             return res.status(400).send({
-                message: Language.getText("err.aciifx.unvalidSession"),
+                message: lang.getText("err.aciifx.unvalidSession"),
             });
         }
 
@@ -29,7 +33,7 @@ export const isLoggedIn = (req: UserRequest, res: Response, next: NextFunction) 
         } catch (err) {
             // -> Error occured
             return res.status(400).send({
-                message: Language.getText("err.aciifx.mustLoggedIn"),
+                message: lang.getText("err.aciifx.mustLoggedIn"),
             });
         }
     },
@@ -39,19 +43,19 @@ export const isLoggedIn = (req: UserRequest, res: Response, next: NextFunction) 
         // username min length 3
         if (!body.username || body.username.length < 3) {
             return res.status(400).send({
-                message: Language.getText("err.aciifx.nameLength"),
+                message: lang.getText("err.aciifx.nameLength"),
             });
         }
         // password min 6 chars
         if (!body.password || body.password.length < 6) {
             return res.status(400).send({
-                message: Language.getText("err.aciifx.passwordLength"),
+                message: lang.getText("err.aciifx.passwordLength"),
             });
         }
         // password (repeat) must match
         if (!body.passwordRepeat || body.password !== body.passwordRepeat) {
             return res.status(400).send({
-                message: Language.getText("err.aciifx.passwordsMatch"),
+                message: lang.getText("err.aciifx.passwordsMatch"),
             });
         }
         next();
