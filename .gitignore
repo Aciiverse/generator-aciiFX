@@ -5,4 +5,6 @@ generators/app/templates/apiTypes
 generators/app/templates/aciiFX/node_modules
 generators/app/templates/aciiFX/dist
 generators/app/templates/aciiFX/.env
+generators/app/templates/aciiFX/package-lock.json
+generators/app/templates/aciiFX/yarn.lock
 !generators/app/templates/aciiFX/.gitignore
