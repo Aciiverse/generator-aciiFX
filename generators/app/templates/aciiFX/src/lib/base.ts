@@ -1,11 +1,11 @@
+import { UsersTable } from "./types/db.types";
+
 export interface UserData {
-    uuid: string;
-    username: string;
-    email: string;
-    password?: string;
-    registered: Date;
-    lastLogin: Date;
-    isAdmin: boolean;
+    uuid: UsersTable["uuid"];
+    username: UsersTable["username"];
+    isAdmin: UsersTable["isAdmin"];
+    lastLogin: UsersTable["lastLogin"];
+    registered: UsersTable["registered"];
 }
 
-export module Base {}
+export namespace Base {}

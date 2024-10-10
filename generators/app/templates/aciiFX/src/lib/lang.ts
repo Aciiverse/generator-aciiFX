@@ -7,7 +7,7 @@ interface LangFile {
     [key: string]: string;
 }
 
-export module lang {
+export namespace lang {
     /**
      * @method gets the language text
      * @param {string} key query for sql database
@@ -33,7 +33,11 @@ export module lang {
         }
 
         // Add config language key to []
-        if (configLanguageKey && typeof configLanguageKey === "string" && !languageArr.includes(configLanguageKey)) {
+        if (
+            configLanguageKey &&
+            typeof configLanguageKey === "string" &&
+            !languageArr.includes(configLanguageKey)
+        ) {
             // -> config language code valid & unique
             languageArr.push(configLanguageKey);
         }
@@ -94,10 +98,15 @@ export module lang {
      */
     function importLangFile(lang: string): LangFile | undefined {
         try {
-            const translations: LangFile | undefined = require(`../../lang/${lang}.lang.json`);
+            const translations: LangFile | undefined = require(
+                `../../lang/${lang}.lang.json`
+            );
             return translations;
         } catch (error) {
-            if (!(error instanceof Error) || (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND") {
+            if (
+                !(error instanceof Error) ||
+                (error as NodeJS.ErrnoException).code !== "MODULE_NOT_FOUND"
+            ) {
                 // -> unexpected error
                 console.error("Error at translation file loading:", error);
                 throw Error;
