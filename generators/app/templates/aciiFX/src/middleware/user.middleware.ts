@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt = require("jsonwebtoken");
-import { lang } from "../lang";
+import { lang } from "../lib/lang";
 import { GetUsersRegisterReq } from "../types/api.types";
 
 export interface UserRequest extends Request {

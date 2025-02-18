@@ -1,3 +1,13 @@
 {
-  "testText": "Ich teste"
+    "err.aciifx.unvalidSession": "Bitte melde dich an",
+    "err.aciifx.usernameExists": "Der Benutzername \"{0}\" wird bereits benutzt",
+    "err.aciifx.registration": "Registrierung fehlgeschlagen",
+    "err.aciifx.userOrPass": "Der Benutzername oder Passwort ist falsch",
+    "err.aciifx.mustLoggedIn": "Sie müssen angemeldet sein",
+    "err.aciifx.nameLength": "Der Benutzername sollte mindestens 3 Zeichen lang sein",
+    "err.aciifx.passwordLength": "Das Passwort sollte mindestens 6 Zeichen lang sein",
+    "err.aciifx.passwordsMatch": "Beide Passwörter müssen übereinstimmen",
+    "suc.aciifx.registration": "Erfolgreich registriert",
+    "suc.aciifx.login": "Erfolgreich angemeldet",
+    "testText": "Ich teste"
 }

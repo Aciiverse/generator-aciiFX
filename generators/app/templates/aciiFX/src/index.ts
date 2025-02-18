@@ -4,6 +4,17 @@ import cors = require("cors");
 // Read environments
 require("dotenv").config({ path: `${__dirname}/../.env` });
 
+// big int handler
+declare global {
+    interface BigInt {
+        toJSON(): Number;
+    }
+}
+BigInt.prototype.toJSON = function () {
+    const int = Number.parseInt(this.toString());
+    return int ?? this.toString();
+};
+
 // Get env data
 const port = parseInt(process.env.FX_PORT!) || 3000,
     system = process.env.FX_SYSTEM || "LOCAL",

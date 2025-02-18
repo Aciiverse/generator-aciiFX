@@ -1,7 +1,7 @@
 import express = require("express");
 import bcrypt = require("bcryptjs");
 import jwt = require("jsonwebtoken");
-import { lang } from "../lang";
+import { lang } from "../lib/lang";
 import uuid = require("uuid");
 import { validateRegister } from "../middleware/user.middleware";
 import { UsersTable } from "../types/db.types";
@@ -12,11 +12,10 @@ import {
     GetUsersLoginRes,
     GetUsersRegisterReq,
 } from "../types/api.types";
-import { ResultSetHeader } from "mysql2";
-import { db } from "@aciiverse/aciifx-cli";
+import { db } from "../lib/db";
 const router = express.Router();
 
-export interface UsersResult extends Array<UsersTable>, ResultSetHeader {}
+export interface UsersResult extends Array<UsersTable> {}
 
 /**
  * @method login route
@@ -109,11 +108,10 @@ router.post("/register", validateRegister, async (req, res) => {
     const body: GetUsersRegisterReq = req.body;
 
     try {
-        const users: { uuid: UsersTable["uuid"] }[] & ResultSetHeader =
-            await db.query(
-                "SELECT uuid FROM users WHERE LOWER(username) = LOWER(?)",
-                [body.username]
-            );
+        const users: { uuid: UsersTable["uuid"] }[] = await db.query(
+            "SELECT uuid FROM users WHERE LOWER(username) = LOWER(?)",
+            [body.username]
+        );
 
         // username already in use
         if (users && Array.isArray(users) && users.length) {
