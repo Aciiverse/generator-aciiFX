@@ -26,7 +26,7 @@
 ### aciiFX-CLI
 
 -   [express](https://github.com/expressjs/express)
--   [mysql2](https://github.com/sidorares/node-mysql2)
+-   [mariadb](https://github.com/sidorares/mariadb)
 -   [prettier](https://github.com/prettier/prettier)
 -   [typescript](https://github.com/Microsoft/TypeScript)
 

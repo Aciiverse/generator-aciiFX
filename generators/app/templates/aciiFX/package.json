@@ -1,6 +1,6 @@
 {
     "name": "aciifx",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Simple & Powerful Aciiverse NodeTS Backend",
     "main": "dist/index.js",
     "scripts": {
@@ -9,8 +9,8 @@
         "start": "node dist/index.js",
         "build": "tsc",
         "build:watch": "tsc --watch",
-        "exportTypes:windows": "powershell Copy-Item -Recurse ./src/lib/types/* ../apiTypes",
-        "exportTypes:linux": "cp -r ./src/lib/types/* ../apiTypes",
+        "exportTypes:windows": "powershell Copy-Item -Recurse ./src/types/* ../types",
+        "exportTypes:linux": "cp -r ./src/types/* ../types",
         "test": "echo \"Error: no test specified\" && exit 1",
         "sleep": "node -e \"setTimeout(() => process.exit(0), 2000)\""
     },
@@ -25,14 +25,15 @@
     },
     "homepage": "https://github.com/Aciiverse/aciiFX#readme",
     "dependencies": {
-        "@aciiverse/aciifx-cli": "^1.1.0",
-        "bcryptjs": "^2.4.3",
+        "@aciiverse/aciifx-cli": "^1.1.3",
+        "bcryptjs": "^3.0.1",
         "cors": "^2.8.5",
-        "dotenv": "^16.4.5",
-        "express": "^4.19.2",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
         "jsonwebtoken": "^9.0.2",
-        "typescript": "^5.5.4",
-        "uuid": "^11.0.3"
+        "mariadb": "^3.4.0",
+        "typescript": "^5.7.3",
+        "uuid": "^11.0.5"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.6",
@@ -41,6 +42,6 @@
         "@types/jsonwebtoken": "^9.0.6",
         "@types/uuid": "^10.0.0",
         "concurrently": "^9.1.0",
-        "prettier": "^3.3.3"
+        "prettier": "^3.5.1"
     }
 }

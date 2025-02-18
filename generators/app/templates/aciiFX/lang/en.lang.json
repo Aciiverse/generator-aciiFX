@@ -1,5 +1,5 @@
 {
-    "err.aciifx.unvalidSession": "Your session is invalid",
+    "err.aciifx.unvalidSession": "Please login",
     "err.aciifx.usernameExists": "The username \"{0}\" is already in use",
     "err.aciifx.registration": "Registration failed",
     "err.aciifx.userOrPass": "The username or password is incorrect",
